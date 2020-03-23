@@ -48,6 +48,16 @@ export class Model implements ModelType {
 		}
 	}
 
+	protected _setMerge(data: { [field: string]: any }) {
+		for (const field of this.fields()) {
+			const codingKey = this.codingKeys()[field]
+			const value = data[codingKey]
+			if (value !== undefined) {
+				this._data[field] = this._decode(value, field)
+			}
+		}
+	}
+
 	private _decode(value: any, key: string): any {
 		if (File.is(value)) {
 			return File.from(value)
