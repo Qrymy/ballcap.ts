@@ -128,6 +128,11 @@ export class Doc extends Model implements DocumentType {
 		return this
 	}
 
+	public setDataMerge(data: { [field: string]: any }) {
+		this._setMerge(data)
+		return this
+	}
+
 	public async fetch(transaction?: Transaction) {
 		try {
 			let snapshot: DocumentSnapshot
